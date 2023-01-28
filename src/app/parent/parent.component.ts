@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 
 // NgFor сложная структура данных
+// https://angular.io/api/common/NgForOf
 
 interface WeekGrade {
   id: number
