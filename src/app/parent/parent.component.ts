@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-//@Output закрепление на практике
+// NgFor
 
 @Component({
   selector: 'inst-parent',
