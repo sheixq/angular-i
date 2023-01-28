@@ -1,6 +1,8 @@
-<div>
-  <inst-child (sendGradeEvent)="getGrade($event)"></inst-child>
-  <br />
+<div *ngIf="isLoading">
+  <h1>Loading...</h1>
+</div>
+
+<div *ngIf="!isLoading">
   <div *ngFor="let lesson of lessons">
     <div>
       <h3>{{ lesson.title }}</h3>
