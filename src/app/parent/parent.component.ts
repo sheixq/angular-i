@@ -1,16 +1,10 @@
 import { Component } from '@angular/core'
+import { Grade } from './child/child.component'
 
-//@Input
-//https://angular.io/api/core/Input
-//https://angular.io/guide/inputs-outputs#sending-data-to-a-child-component
-//https://angular.io/guide/styleguide#avoid-aliasing-inputs-and-outputs
-//https://angular.io/guide/styleguide#initialize-inputs
-
-export interface Address {
-  city: string
-  street: string
-  house: number
-}
+//@Output
+//https://angular.io/api/core/Output
+//https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component
+//https://angular.io/guide/devtools
 
 @Component({
   selector: 'inst-parent',
@@ -18,11 +12,10 @@ export interface Address {
   styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent {
-  name = 'Ivan'
-  surname = 'Petrov'
-  address: Address = {
-    city: 'Minsk',
-    street: 'Platonova',
-    house: 49,
+  math?: number
+  physics?: number
+  getGrade(value: Grade) {
+    this.math = value.math
+    this.physics = value.physics
   }
 }

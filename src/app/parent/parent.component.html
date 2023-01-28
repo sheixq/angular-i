@@ -1,6 +1,5 @@
 <div>
-  <h1>
-    Parent {{ name }} {{ surname }} from {{ address.city }} {{ address.street }} {{ address.house }}
-  </h1>
-  <inst-child [surname]="surname" [address]="address"></inst-child>
+  <inst-child (sendGradeEvent)="getGrade($event)"></inst-child>
+  <h2>math: {{ math }}</h2>
+  <h2>physics: {{ physics }}</h2>
 </div>
