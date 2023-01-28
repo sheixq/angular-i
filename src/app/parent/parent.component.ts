@@ -1,6 +1,17 @@
 import { Component } from '@angular/core'
 
-// NgFor
+// NgFor сложная структура данных
+
+interface WeekGrade {
+  id: number
+  gradeItem: number
+}
+
+interface Lesson {
+  id: number
+  title: string
+  weekGrades: WeekGrade[]
+}
 
 @Component({
   selector: 'inst-parent',
@@ -8,9 +19,44 @@ import { Component } from '@angular/core'
   styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent {
-  grades: string[] = ['math: 5', 'english: 3']
+  lessons: Lesson[] = [
+    {
+      id: 0,
+      title: 'Math',
+      weekGrades: [
+        {
+          id: 0,
+          gradeItem: 5,
+        },
+        {
+          id: 1,
+          gradeItem: 2,
+        },
+        {
+          id: 2,
+          gradeItem: 3,
+        },
+      ],
+    },
+    {
+      id: 1,
+      title: 'Physics',
+      weekGrades: [
+        {
+          id: 0,
+          gradeItem: 3,
+        },
+        {
+          id: 1,
+          gradeItem: 4,
+        },
+        {
+          id: 2,
+          gradeItem: 1,
+        },
+      ],
+    },
+  ]
 
-  getGrade(grade: string) {
-    this.grades.push(grade)
-  }
+  getGrade(grade: string) {}
 }
