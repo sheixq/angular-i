@@ -1,10 +1,6 @@
 import { Component } from '@angular/core'
-import { Grade } from './child/child.component'
 
-//@Output
-//https://angular.io/api/core/Output
-//https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component
-//https://angular.io/guide/devtools
+//@Output закрепление на практике
 
 @Component({
   selector: 'inst-parent',
@@ -12,10 +8,9 @@ import { Grade } from './child/child.component'
   styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent {
-  math?: number
-  physics?: number
-  getGrade(value: Grade) {
-    this.math = value.math
-    this.physics = value.physics
+  grades: string[] = ['math: 5', 'english: 3']
+
+  getGrade(grade: string) {
+    this.grades.push(grade)
   }
 }
