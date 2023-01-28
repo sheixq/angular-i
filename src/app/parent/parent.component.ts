@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 
-// NgIf, elseBlock, ng template
-// https://angular.io/api/common/NgIf
+// ng container
 
 interface WeekGrade {
   id: number

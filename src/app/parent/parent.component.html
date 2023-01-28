@@ -1,21 +1,19 @@
-<div *ngIf="isLoading; else elseBlock">
+<div *ngIf="isLoading">
   <h1>Loading...</h1>
 </div>
 
-<ng-template #elseBlock>
-  <div>
-    <div *ngFor="let lesson of lessons">
+<ng-container *ngIf="!isLoading">
+  <div *ngFor="let lesson of lessons">
+    <div>
+      <h3>{{ lesson.title }}</h3>
       <div>
-        <h3>{{ lesson.title }}</h3>
-        <div>
-          <h3>
-            weekGrade
-            <div *ngFor="let grade of lesson.weekGrades">
-              {{ grade.gradeItem }}
-            </div>
-          </h3>
-        </div>
+        <h3>
+          weekGrade
+          <div *ngFor="let grade of lesson.weekGrades">
+            {{ grade.gradeItem }}
+          </div>
+        </h3>
       </div>
     </div>
   </div>
-</ng-template>
+</ng-container>
