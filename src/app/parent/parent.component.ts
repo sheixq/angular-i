@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
-// NgSwitch
-// https://angular.io/api/common/NgSwitch
+// NgClass
+// https://angular.io/api/common/NgClass
 
 @Component({
   selector: 'inst-parent',
@@ -9,5 +9,11 @@ import { Component } from '@angular/core'
   styleUrls: ['./parent.component.scss'],
 })
 export class ParentComponent {
-  value = ''
+  isSuccess = false
+
+  constructor() {
+    setTimeout(() => {
+      this.isSuccess = true
+    }, 3000)
+  }
 }
