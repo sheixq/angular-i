@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
-// NgClass
-// https://angular.io/api/common/NgClass
+// NgStyle
+// https://angular.io/api/common/NgStyle
 
 @Component({
   selector: 'inst-parent',
@@ -10,6 +10,12 @@ import { Component } from '@angular/core'
 })
 export class ParentComponent {
   isSuccess = false
+
+  styles = {
+    color: 'blue',
+    margin: '20px',
+    opacity: '0.2',
+  }
 
   constructor() {
     setTimeout(() => {
