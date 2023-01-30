@@ -1,9 +1,9 @@
-<div *ngFor="let fruit of fruits; even as even; odd as odd">
-  <p
-    class="default"
-    *ngIf="fruit.price > 7"
-    [ngClass]="{ success: even, error: odd, bigPrice: fruit.price > 15 }"
-  >
-    {{ fruit.name }}: {{ fruit.price }}
-  </p>
-</div>
+<h1>{{ title | titlecase }}</h1>
+<!-- обрезать с 8 символа —> angular.io/api/commons/SlicePipe -->
+<h1>{{ url | slice : 8 }}</h1>
+<!-- обрезать с конца —> Pipe -->
+<h1>{{ url | slice : -4 }}</h1>
+<!-- обрезать с 8 по 15 символ —> angular -->
+<h1>{{ url | slice : 8 : 15 }}</h1>
+<h1>{{ date | date : 'short' }}</h1>
+<h1>{{ date | date : 'mediumDate' }}</h1>
