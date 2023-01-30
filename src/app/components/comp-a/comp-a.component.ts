@@ -14,4 +14,8 @@ export class CompAComponent implements OnInit {
   ngOnInit(): void {
     this.value = this.valueService.value
   }
+
+  addValueHandler() {
+    this.valueService.add()
+  }
 }
