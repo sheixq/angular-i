@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ValueService } from '../../services/value.service'
 import { Observable } from 'rxjs'
+import { BeatyLoggerService } from '../../services/beaty-logger.service'
 
 @Component({
   selector: 'inst-comp-a',
@@ -10,14 +11,14 @@ import { Observable } from 'rxjs'
 export class CompAComponent implements OnInit {
   value$ = new Observable()
 
-  constructor(private valueService: ValueService) {}
+  constructor(private valueService: ValueService, private beatyLoggerService: BeatyLoggerService) {}
 
   ngOnInit(): void {
-    // Вместо подписки можно использовать такой вариант
     this.value$ = this.valueService.value$
   }
 
   addValueHandler() {
     this.valueService.add()
+    this.beatyLoggerService.log('add value', 'success')
   }
 }
