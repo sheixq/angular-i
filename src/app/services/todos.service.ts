@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject, map } from 'rxjs'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { environment } from '../../environment/environment'
+import { BeatyLoggerService } from './beaty-logger.service'
 
 export interface Todo {
   addedDate: string
@@ -9,6 +10,7 @@ export interface Todo {
   order: number
   title: string
 }
+
 export interface BaseResponse<T = Record<string, never>> {
   data: T
   messages: string[]
@@ -28,11 +30,17 @@ export class TodosService {
     },
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private beatyLoggerService: BeatyLoggerService) {}
 
   getTodos() {
     this.http
       .get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.beatyLoggerService.log(error.message, 'error')
+          return EMPTY
+        })
+      )
       .subscribe(todos => {
         this.todos$.next(todos) // TODO не совсем понятен этот момент, то есть как работает метод next
       })
@@ -46,6 +54,7 @@ export class TodosService {
         this.httpOptions
       )
       .pipe(
+        // TODO что за пайп
         map(res => {
           const newTodo = res.data.item
           const stateTodos = this.todos$.getValue()
