@@ -35,12 +35,7 @@ export class TodosService {
   getTodos() {
     this.http
       .get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.beatyLoggerService.log(error.message, 'error')
-          return EMPTY
-        })
-      )
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos) // TODO не совсем понятен этот момент, то есть как работает метод next
       })
@@ -55,6 +50,7 @@ export class TodosService {
       )
       .pipe(
         // TODO что за пайп
+        catchError(this.errorHandler.bind(this)),
         map(res => {
           const newTodo = res.data.item
           const stateTodos = this.todos$.getValue()
@@ -70,6 +66,7 @@ export class TodosService {
     this.http
       .delete<BaseResponse>(`${environment.baseUrl}/todo-lists/${todoId}`, this.httpOptions)
       .pipe(
+        catchError(this.errorHandler.bind(this)),
         map(() => {
           return this.todos$.getValue().filter(tl => tl.id !== todoId)
         })
@@ -77,5 +74,10 @@ export class TodosService {
       .subscribe(todos => {
         this.todos$.next(todos)
       })
+  }
+
+  private errorHandler(error: HttpErrorResponse) {
+    this.beatyLoggerService.log(error.message, 'error')
+    return EMPTY
   }
 }
