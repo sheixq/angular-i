@@ -12,9 +12,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = []
   error = ''
 
-  subscription: Subscription | null = null
-  subscription2: Subscription | null = null
-  subscription3: Subscription | null = null
+  subscription: Subscription = new Subscription()
 
   constructor(private todosService: TodosService) {}
 
@@ -23,43 +21,38 @@ export class TodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe()
-      this.subscription = null
-    }
-    if (this.subscription2) {
-      this.subscription2.unsubscribe()
-      this.subscription2 = null
-    }
-    if (this.subscription3) {
-      this.subscription3.unsubscribe()
-      this.subscription3 = null
-    }
+    this.subscription.unsubscribe()
   }
 
   getTodos() {
-    this.subscription = this.todosService.getTodos().subscribe({
-      next: (res: Todo[]) => {
-        this.todos = res
-      },
-      error: (error: HttpErrorResponse) => {
-        this.error = error.message
-      },
-    })
+    this.subscription.add(
+      this.todosService.getTodos().subscribe({
+        next: (res: Todo[]) => {
+          this.todos = res
+        },
+        error: (error: HttpErrorResponse) => {
+          this.error = error.message
+        },
+      })
+    )
   }
 
   createTodo() {
     const randomNumber = Math.floor(Math.random() * 100)
     const title = 'Angular ' + randomNumber
-    this.subscription2 = this.todosService.createTodo(title).subscribe(res => {
-      this.todos.unshift(res.data.item)
-    })
+    this.subscription.add(
+      this.todosService.createTodo(title).subscribe(res => {
+        this.todos.unshift(res.data.item)
+      })
+    )
   }
 
   delete() {
     const todoId = '3bafcb8f-b0e9-4cb0-9861-c51541a9b56a'
-    this.subscription3 = this.todosService.delete(todoId).subscribe(() => {
-      this.todos = this.todos.filter(tl => tl.id !== todoId)
-    })
+    this.subscription.add(
+      this.todosService.delete(todoId).subscribe(() => {
+        this.todos = this.todos.filter(tl => tl.id !== todoId)
+      })
+    )
   }
 }
