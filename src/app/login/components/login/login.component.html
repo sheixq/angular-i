@@ -1,2 +1,5 @@
-<input type="text" [formControl]="email" />
-<h1>{{ email.value }}</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="email" />
+  <input type="password" formControlName="password" />
+  <button type="submit">send</button>
+</form>

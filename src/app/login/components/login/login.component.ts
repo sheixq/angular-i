@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { Component } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'inst-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  email = new FormControl('initial value')
+export class LoginComponent {
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  })
 
-  constructor() {}
-
-  ngOnInit() {}
+  onSubmit() {
+    alert(JSON.stringify(this.loginForm.value))
+  }
 }
