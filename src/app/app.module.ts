@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { AppComponent } from './app.component'
-import { TodosComponent } from './components/todos/todos.component'
 import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms'
+import { LoginComponent } from './login/components/login/login.component'
 
 @NgModule({
-  declarations: [AppComponent, TodosComponent],
-  imports: [BrowserModule, HttpClientModule],
+  declarations: [AppComponent, LoginComponent],
+  imports: [BrowserModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
