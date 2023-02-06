@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component'
 import { TodosComponent } from './components/todos/todos.component'
 import { UsersComponent } from './components/users/users.component'
 import { AppRoutingRoutingModule } from './app-routing-routing.module'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AppRoutingRoutingModule } from './app-routing-routing.module'
     TodosComponent,
     UsersComponent,
   ],
-  imports: [BrowserModule, AppRoutingRoutingModule],
+  imports: [BrowserModule, AppRoutingRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
