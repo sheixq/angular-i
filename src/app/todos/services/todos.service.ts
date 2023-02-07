@@ -1,22 +1,10 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { environment } from '../../environments/environment'
-import { BeautyLoggerService } from './beauty-logger.service'
-
-export interface Todo {
-  id: string
-  title: string
-  addedDate: string
-  order: number
-}
-
-interface CommonResponse<T = {}> {
-  data: T
-  messages: string[]
-  fieldsErrors: string[]
-  resultCode: number
-}
+import { environment } from '../../../environments/environment'
+import { BeautyLoggerService } from '../../core/services/beauty-logger.service'
+import { Todo } from '../models/todos.model'
+import { CommonResponse } from 'src/app/core/models/core.model'
 
 @Injectable({
   providedIn: 'root',

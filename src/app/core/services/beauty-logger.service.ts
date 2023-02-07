@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core'
+import { BeautyLoggerType } from '../models/core.model'
 
-type BeautyLoggerType = 'error' | 'warning' | 'success' | 'info'
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class BeautyLoggerService {
   log(message: string, type: BeautyLoggerType) {
     console.log('%c' + message, this.getColor(type))
