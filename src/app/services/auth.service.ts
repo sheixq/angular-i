@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../environment/environment'
+import { environment } from '../../environments/environment'
 
 interface MeResponse {
   data: {
@@ -9,7 +9,7 @@ interface MeResponse {
     email: string
   }
   messages: string[]
-  fieldErrors: string[]
+  fieldsErrors: string[]
   resultCode: number
 }
 
@@ -27,7 +27,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   me() {
-    return this.http.get<MeResponse>(`${environment.baseNetworkUrl}/auth/me`).subscribe(res => {
+    this.http.get<MeResponse>(`${environment.baseNetworkUrl}/auth/me`).subscribe(res => {
       if (res.resultCode === ResultCodes.success) {
         this.isAuth = true
       }

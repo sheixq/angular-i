@@ -1,6 +1,8 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import { Component, OnInit } from '@angular/core'
-import { User, UsersService } from '../../service/users.service'
 import { Observable } from 'rxjs'
+import { User, UsersService } from '../../services/users.service'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
 @Component({
@@ -30,12 +32,11 @@ export class UsersComponent implements OnInit {
   nextUsersHandler() {
     const page = Number(this.route.snapshot.queryParamMap.get('page'))
     const nextPage = page ? page + 1 : 2
-    this.router
-      .navigate(['/users'], {
-        queryParams: {
-          page: nextPage,
-        },
-      })
-      .then(() => this.getUsers(nextPage))
+
+    this.router.navigate(['/users'], {
+      queryParams: {
+        page: nextPage,
+      },
+    })
   }
 }

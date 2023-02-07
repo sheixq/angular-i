@@ -1,1 +1,11 @@
 <p>todos works!</p>
+<h2 *ngIf="!!error; else content">{{ error }}</h2>
+
+<ng-template #content>
+  <div *ngFor="let todo of todos$ | async">
+    <div>{{ todo.title }} - {{ todo.order }}</div>
+  </div>
+</ng-template>
+
+<button (click)="creteTodo()">add todo</button>
+<button (click)="removeTodo()">remove todo</button>
